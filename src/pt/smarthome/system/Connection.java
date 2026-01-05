@@ -9,10 +9,12 @@ public class Connection {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
+    private Protocol protocol;
 
-    public Connection(String host, int port) {
+    public Connection(String host, int port, Protocol protocol) {
         this.host = host;
         this.port = port;
+        this.protocol = protocol;
     }
 
     public void connect() {
@@ -33,8 +35,8 @@ public class Connection {
         if (socket == null || socket.isClosed()) connect();
 
         try {
-            System.out.println("-> A enviar: " + command.generateMessage());
-            out.println(command.generateMessage());
+            System.out.println("-> A enviar: " + protocol.generate(command));
+            out.println(protocol.generate(command));
 
             String response = in.readLine();
             System.out.println("<- Recebido: " + response);

@@ -1,5 +1,6 @@
 package pt.smarthome.system;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,21 +23,22 @@ public class Command {
         return this;
     }
 
-    public String generateMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(deviceType)
-                .append(":")
-                .append(deviceId)
-                .append(":")
-                .append(action);
+    public String getDeviceType() {
 
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            sb.append(":")
-                    .append(entry.getKey())
-                    .append("=")
-                    .append(entry.getValue());
-        }
+        return deviceType;
+    }
 
-        return sb.toString();
+    public int getDeviceId() {
+
+        return deviceId;
+    }
+
+    public String getAction() {
+
+        return action;
+    }
+
+    public Map<String, String> getParams() {
+        return Collections.unmodifiableMap(params);
     }
 }

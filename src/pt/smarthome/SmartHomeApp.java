@@ -5,6 +5,7 @@ import pt.smarthome.devices.AirConditioner;
 import pt.smarthome.devices.SecuritySystem;
 import pt.smarthome.devices.SmartLight;
 import pt.smarthome.system.Connection;
+import pt.smarthome.system.VirtualProtocol;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class SmartHomeApp {
 
     public static void main(String[] args) {
         // 1. Configurar a ligação
-        Connection conn = new Connection("127.0.0.1", 9999);
+        Connection conn = new Connection("127.0.0.1", 9999, new VirtualProtocol());
         conn.connect();
 
         // 2. Criar os dispositivos
