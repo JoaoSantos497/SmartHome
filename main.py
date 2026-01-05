@@ -5,41 +5,77 @@ import threading
 HOST = '0.0.0.0'  # Escuta em todas as interfaces
 PORT = 9999       # Tem de ser igual ao do Java (SmartHomeApp.java)
 
-def process_command(command):
-    """
-    Processa o texto recebido do Java e executa a ação.
-    Retorna a resposta para enviar de volta ao Java.
-    """
-    parts = command.split(":")
-    device_type = parts[0]
+class Command:
+    def __init__(self, raw):
+        parts = raw.split(":")
 
-    printf(f"   [Ação] A processar comando para: {device_type}")
+        self.device_type = parts[0]
+        self.device_id = parts[1]
+        self.action = parts[2]
+        self.params = {}
 
-    if device_type == "LIGHT":
-        # Ex: LIGHT:1:ON
-        device_id = parts[1]
-        action = parts[2]
-        if action == "BRIGHT":
-            level = parts[3]
-            return f"Luz {device_id} brilho ajustado para {level}%"
-        return f"Luz {device_id} está {action}"
+        for part in parts[3:]:
+            if "=" in part:
+                key, value = part.split("=", 1)
+                self.params[key] = value
 
-    elif device_type == "AC":
-        # Ex: AC:2:TEMP:22
-        device_id = parts[1]
-        action = parts[2]
-        if action == "TEMP":
-            temp = parts[3]
-            return f"AC {device_id} temperatura definida para {temp}C"
-        return f"Ar Condicionado {device_id} está {action}"
+class SmartDevice:
 
-    elif device_type == "ALARM":
-        # Ex: ALARM:3:ARM
-        device_id = parts[1]
-        action = parts[2]
-        return f"Alarme {device_id} status: {action}"
+    def __init__(self, device_id):
+        self.device_id = device_id
 
-    return "Comando desconhecido"
+    def handle(self, command: Command):
+        print("handle() must be implemented by subclasses")
+
+class Light(SmartDevice):
+
+    def handle(self, command: Command):
+        if command.action == "SET":
+            brightness = command.params.get("BRIGHT")
+
+            return f"Luz {self.device_id} brilho={brightness}%"
+
+        return f"Luz {self.device_id} está {command.action}"
+
+
+class AirConditioner(SmartDevice):
+
+    def handle(self, command: Command):
+        if command.action == "SET":
+            temp = command.params.get("TEMP")
+
+            return f"AC {self.device_id} temperatura={temp}°C"
+
+        return f"Ar Condicionado {self.device_id} está {command.action}"
+
+
+class Alarm(SmartDevice):
+
+    def handle(self, command: Command):
+        return f"Alarme {self.device_id} status={command.action}"
+
+DEVICE_TYPES = {
+    "LIGHT": Light,
+    "AC": AirConditioner,
+    "ALARM": Alarm
+}
+
+def process_command(raw_command):
+    try:
+        command = Command(raw_command)
+    except Exception:
+        return "Erro ao processar comando"
+
+    print(f"   [Ação] A processar comando para: {command.device_type}")
+
+    device_class = DEVICE_TYPES.get(command.device_type)
+
+    if not device_class:
+        return "Dispositivo desconhecido"
+
+    device = device_class(command.device_id)
+
+    return device.handle(command)
 
 def handle_client(client_socket, addr):
     """

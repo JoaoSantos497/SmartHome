@@ -86,10 +86,12 @@ public class SmartHomeApp {
                         for(SmartDevice device: devices) {
                             device.turnOn();
                         }
+                        break;
                     case 11:
                         for(SmartDevice device: devices) {
                             device.turnOff();
                         }
+                        break;
                     case 0:
                         System.out.println("A desligar o sistema...");
                         break;

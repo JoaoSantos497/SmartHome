@@ -29,14 +29,14 @@ public class Connection {
         }
     }
 
-    public String sendCommand(String command) {
+    public String sendCommand(Command command) {
         if (socket == null || socket.isClosed()) connect();
 
         try {
-            System.out.println("-> A enviar: " + command);
-            out.println(command); // Envia para o Python
+            System.out.println("-> A enviar: " + command.generateMessage());
+            out.println(command.generateMessage());
 
-            String response = in.readLine(); // Espera resposta
+            String response = in.readLine();
             System.out.println("<- Recebido: " + response);
             return response;
 
