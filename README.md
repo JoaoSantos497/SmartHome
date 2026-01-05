@@ -39,3 +39,30 @@ O sistema utiliza uma arquitetura **Cliente-Servidor** síncrona:
 graph LR
     A[Java Client] -- Socket TCP (Port 9999) --> B[Python Server]
     B -- Response (String) --> A
+
+```
+
+✨ Funcionalidades💡 Iluminação (SmartLight)Ligar/Desligar luzes remotamente.Ajustar intensidade do brilho (0-100%).❄️ Climatização (AirConditioner)Ligar/Desligar o ar condicionado.Definir a temperatura desejada.🚨 Segurança (SecuritySystem)Armar/Desarmar: Ativa ou desativa os sensores de movimento.Botão de Pânico: Envia um sinal de emergência imediato para o servidor, independentemente do estado do sistema.🛠 Pré-requisitosPara executar este projeto, necessitas de ter instalado:Java JDK 8 ou superior.Python 3.x.Um IDE (recomendado: IntelliJ IDEA ou VS Code).🚀 Como ExecutarSiga estes passos na ordem exata para garantir a conexão.Passo 1: Iniciar o Servidor (Cérebro)No terminal, navegue até à pasta raiz do projeto e execute:Bashpython main.py
+Deverá ver a mensagem: === Servidor SmartHome Python a correr na porta 9999 ===Passo 2: Iniciar o Cliente (Comando)No teu IDE Java (ou outro terminal), compila e executa a classe principal:src/pt/smarthome/SmartHomeApp.javaDeverá ver o menu interativo:Plaintext--- BEM-VINDO À SMART HOME ---
+Escolha uma opção:
+1. Ligar Luz
+...
+📂 Estrutura do ProjetoSmartHome/
+│
+├── main.py                     # Servidor Python (Hub)
+├── README.md                   # Documentação
+│
+└── src/pt/smarthome/           # Código Fonte Java
+    ├── SmartHomeApp.java       # Aplicação Principal (Menu)
+    │
+    ├── core/                   # Camada Abstrata
+    │   └── SmartDevice.java    # Classe Pai (Abstract)
+    │
+    ├── devices/                # Dispositivos Concretos
+    │   ├── SmartLight.java
+    │   ├── AirConditioner.java
+    │   └── SecuritySystem.java
+    │
+    └── system/                 # Camada de Rede
+        └── Connection.java     # Gestão de Sockets
+📡 Protocolo de ComunicaçãoA comunicação é feita através de strings simples formatadas com o separador :.DispositivoComando EnviadoResposta do ServidorLuzLIGHT:1:ONLuz 1 está ONLuz (Brilho)LIGHT:1:BRIGHT:50Luz 1 brilho ajustado para 50%ACAC:2:TEMP:22AC 2 temperatura definida para 22CAlarmeALARM:3:PANIC(Ação de emergência)👨‍💻 AutorDesenvolvido por JoaoSantos497 no âmbito da unidade curricular de Programação Orientada a Objetos.
