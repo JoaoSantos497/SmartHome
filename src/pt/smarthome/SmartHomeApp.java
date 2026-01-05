@@ -1,10 +1,12 @@
 package pt.smarthome;
 
+import pt.smarthome.core.SmartDevice;
 import pt.smarthome.devices.AirConditioner;
 import pt.smarthome.devices.SecuritySystem;
 import pt.smarthome.devices.SmartLight;
 import pt.smarthome.system.Connection;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SmartHomeApp {
@@ -18,6 +20,8 @@ public class SmartHomeApp {
         SmartLight luz = new SmartLight(1, "Luz da Sala", conn);
         AirConditioner ac = new AirConditioner(2, "AC do Quarto", conn);
         SecuritySystem alarme = new SecuritySystem(3, "Alarme Geral", conn);
+
+        List<SmartDevice> devices = List.of(luz, ac, alarme);
 
         // 3. Iniciar o Scanner para ler do teclado
         Scanner scanner = new Scanner(System.in);
@@ -37,6 +41,8 @@ public class SmartHomeApp {
             System.out.println("7. Ligar o Alarme");
             System.out.println("8. Desligar o Alarme");
             System.out.println("9. Emergência (Alarme)");
+            System.out.println("10. Ligar todos os dispositivos");
+            System.out.println("11. Desligar todos os dispositivos");
             System.out.println("0. Sair");
             System.out.print("-> ");
 
@@ -76,6 +82,14 @@ public class SmartHomeApp {
                     case 9:
                         alarme.triggerPanic();
                         break;
+                    case 10:
+                        for(SmartDevice device: devices) {
+                            device.turnOn();
+                        }
+                    case 11:
+                        for(SmartDevice device: devices) {
+                            device.turnOff();
+                        }
                     case 0:
                         System.out.println("A desligar o sistema...");
                         break;
