@@ -15,7 +15,7 @@
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Arquitetura](#-arquitetura)
 - [Funcionalidades](#-funcionalidades)
-- [Pré Requisitos](#-pre-requisitos)
+- [Pré-Requisitos](#-pre-requisitos)
 - [Como Executar](#-como-executar)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Protocolo de Comunicação](#-protocolo-de-comunicação)
@@ -37,7 +37,7 @@ O sistema utiliza uma arquitetura **Cliente-Servidor** síncrona:
 
 ---
 
-##✨Funcionalidades 
+## ✨Funcionalidades 
 
 💡 Iluminação (SmartLight)
 - Controlo de Estado: Ligar e desligar luzes remotamente.
@@ -52,7 +52,7 @@ O sistema utiliza uma arquitetura **Cliente-Servidor** síncrona:
 - Botão de Pânico: Funcionalidade de segurança crítica que envia um sinal de emergência imediato para o servidor, ignorando o estado atual do alarme.
 
 ---
-🛠 Pré-requisitos
+## 🛠 Pré-requisitos
 Para executar este projeto sem erros, necessitas do seguinte ambiente configurado:
 
 Java Development Kit (JDK): Versão 8 ou superior.
@@ -86,7 +86,7 @@ Escolha uma opção:
 
 ---
 
-## Estrutura do Projeto
+## 📂 Estrutura do Projeto
 ```text
 SmartHome/
 │
@@ -127,7 +127,7 @@ graph LR
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻Autor
 
 Desenvolvido por JoaoSantos497 no âmbito da unidade curricular de Programação Orientada a Objetos.
 
