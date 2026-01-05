@@ -16,10 +16,12 @@ Para executar este projeto, necessitas de ter instalado:
 - Python 3.x.
 - Um IDE (recomendado: IntelliJ IDEA ou VS Code).
 
-🚀 Como ExecutarSiga estes passos na ordem exata para garantir a conexão.
+🚀 Como Executar
+
+Siga estes passos na ordem exata para garantir a conexão.
 
 Passo 1: Iniciar o Servidor (Cérebro)No terminal, navegue até à pasta raiz do projeto e execute:
-- Bashpython main.py
+- python main.py ou python3 main.py ou py main.py
 
 Deverá ver a mensagem:
 === Servidor SmartHome Python a correr na porta 9999 ===
