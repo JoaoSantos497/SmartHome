@@ -1,4 +1,4 @@
-# 🏠 SmartHome System (IoT Simulation)
+# 🏠 SmartHome System
 
 > **Simulação de um sistema de Casa Inteligente com arquitetura Cliente-Servidor.**
 >
