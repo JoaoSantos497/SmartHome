@@ -78,6 +78,7 @@ def process_command(raw_command):
     return device.handle(command)
 
 def handle_client(client_socket, addr):
+
     """
     Gere uma conexão individual com um cliente Java.
     """
